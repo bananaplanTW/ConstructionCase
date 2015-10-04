@@ -2,10 +2,7 @@ package bananaplan.controller;
 
 import bananaplan.domain.Account;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import bananaplan.service.AccountService;
 
 import javax.websocket.server.PathParam;
@@ -15,11 +12,6 @@ public class UserController {
 
     @Autowired
     AccountService accountService;
-
-    @RequestMapping("/")
-    public String hello(){
-        return "Greeting Account Manager";
-    }
 
     @RequestMapping(value = "/users", method = RequestMethod.PUT)
     public void createAccount(@RequestBody Account account){
@@ -31,4 +23,8 @@ public class UserController {
         return accountService.getAccount(username, password) != null ? "find account!" : "account not exists or username/password not match";
     }
 
+    @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
+    public void deleteAccount(@PathVariable String username) {
+        accountService.deleteAccount(username);
+    }
 }
