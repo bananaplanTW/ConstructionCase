@@ -1,5 +1,7 @@
 package bananaplan.domain.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ public class CompanyDAO {
 
     private String name;
 
+    @JsonIgnore
     @OneToMany(mappedBy="companyDAO")
     private Set<AccountDAO> accountDAOs;
 
@@ -42,5 +45,13 @@ public class CompanyDAO {
 
     public void setAccountDAOs(Set<AccountDAO> accountDAOs) {
         this.accountDAOs = accountDAOs;
+    }
+
+    @Override
+    public String toString() {
+        return "CompanyDAO{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

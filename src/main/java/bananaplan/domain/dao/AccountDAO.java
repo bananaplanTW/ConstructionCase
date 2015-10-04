@@ -19,6 +19,9 @@ public class AccountDAO {
     @JoinColumn(name="company_id")
     private CompanyDAO companyDAO;
 
+    public AccountDAO() {
+    }
+
     public AccountDAO(String username, String password, String salt, CompanyDAO companyDAO) {
         this.username = username;
         this.password = password;
@@ -64,5 +67,16 @@ public class AccountDAO {
 
     public void setCompanyDAO(CompanyDAO companyDAO) {
         this.companyDAO = companyDAO;
+    }
+
+    @Override
+    public String toString() {
+        return "AccountDAO{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", companyDAO=" + companyDAO +
+                '}';
     }
 }

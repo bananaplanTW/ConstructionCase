@@ -1,5 +1,6 @@
 package bananaplan.controller;
 
+import bananaplan.domain.dao.AccountDAO;
 import bananaplan.domain.request.AccountRequest;
 import bananaplan.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,10 @@ public class UserController {
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String accountLogin(@PathParam("username") String username, @PathParam("password") String password){
-        return accountService.getAccount(username, password) != null ? "find account!" : "account not exists or username/password not match";
+    public AccountDAO accountLogin(@PathParam("username") String username, @PathParam("password") String password){
+        AccountDAO accountDAO = accountService.getAccount(username, password);
+        //return accountDAO != null ? accountDAO.toString() : "account not exists or username/password not match";
+        return accountDAO;
     }
 
     @RequestMapping(value = "/users/{username}", method = RequestMethod.DELETE)
