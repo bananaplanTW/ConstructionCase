@@ -19,6 +19,10 @@ public class AccountService {
     PasswordService passwordService;
 
     public void createAccount(Account account) {
+        Account existingAccount = accountRepository.findByUsername(account.getUsername());
+        if(existingAccount != null) {
+            //TODO : throw duplicate account error message
+        }
         EncryptedPassword encryptedPassword = passwordService.encryptedPassword(account.getPassword());
         account.setPassword(encryptedPassword.getEncryptedPassword());
         account.setSalt(encryptedPassword.getSalt());
@@ -31,6 +35,9 @@ public class AccountService {
 
     public void deleteAccount(String username) {
         Account account = accountRepository.findByUsername(username);
+        if(account == null) {
+            //TODO : throw account not existed error message
+        }
         accountRepository.delete(account);
     }
 }

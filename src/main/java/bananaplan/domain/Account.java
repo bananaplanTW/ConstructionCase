@@ -1,7 +1,5 @@
 package bananaplan.domain;
 
-import javax.persistence.*;
-
 /**
  * Created by paulou on 9/30/15.
  */
