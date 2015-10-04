@@ -1,6 +1,6 @@
 package bananaplan.controller;
 
-import bananaplan.domain.Account;
+import bananaplan.domain.request.AccountRequest;
 import bananaplan.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,8 +14,8 @@ public class UserController {
     AccountService accountService;
 
     @RequestMapping(value = "/users", method = RequestMethod.PUT)
-    public void createAccount(@RequestBody Account account){
-        accountService.createAccount(account);
+    public void createAccount(@RequestBody AccountRequest accountRequest){
+        accountService.createAccount(accountRequest);
     }
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)

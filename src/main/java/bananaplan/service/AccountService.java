@@ -1,7 +1,9 @@
 package bananaplan.service;
 
-import bananaplan.domain.Account;
+import bananaplan.domain.dao.AccountDAO;
 import bananaplan.domain.EncryptedPassword;
+import bananaplan.domain.dao.CompanyDAO;
+import bananaplan.domain.request.AccountRequest;
 import bananaplan.repository.AccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,26 +20,33 @@ public class AccountService {
     @Autowired
     PasswordService passwordService;
 
-    public void createAccount(Account account) {
-        Account existingAccount = accountRepository.findByUsername(account.getUsername());
-        if(existingAccount != null) {
+    @Autowired
+    CompanyService companyService;
+
+    public void createAccount(AccountRequest accountRequest) {
+        AccountDAO existingAccountDAO = accountRepository.findByUsername(accountRequest.getUsername());
+        if(existingAccountDAO != null) {
             //TODO : throw duplicate account error message
         }
-        EncryptedPassword encryptedPassword = passwordService.encryptedPassword(account.getPassword());
-        account.setPassword(encryptedPassword.getEncryptedPassword());
-        account.setSalt(encryptedPassword.getSalt());
-        accountRepository.save(account);
+        CompanyDAO companyDAO = companyService.getCompany(accountRequest.getCompanyName());
+        if(companyDAO == null) {
+            //TODO : throw non company exception
+        }
+        EncryptedPassword encryptedPassword = passwordService.encryptedPassword(accountRequest.getPassword());
+        AccountDAO accountDAO = new AccountDAO(accountRequest.getUsername(), encryptedPassword.getEncryptedPassword(),
+                encryptedPassword.getSalt(), companyDAO);
+        accountRepository.save(accountDAO);
     }
 
-    public Account getAccount(String username, String password) {
+    public AccountDAO getAccount(String username, String password) {
         return accountRepository.findByUsernameAndPassword(username, password);
     }
 
     public void deleteAccount(String username) {
-        Account account = accountRepository.findByUsername(username);
-        if(account == null) {
+        AccountDAO accountDAO = accountRepository.findByUsername(username);
+        if(accountDAO == null) {
             //TODO : throw account not existed error message
         }
-        accountRepository.delete(account);
+        accountRepository.delete(accountDAO);
     }
 }

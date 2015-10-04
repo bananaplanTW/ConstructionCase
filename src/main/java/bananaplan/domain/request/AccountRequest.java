@@ -1,28 +1,17 @@
-package bananaplan.domain;
+package bananaplan.domain.request;
 
 /**
- * Created by paulou on 9/30/15.
+ * Created by paulou on 10/3/15.
+ * All Rights Reserved By BananaPlanTw
  */
-@Entity
-@Table(name="accounts")
-public class Account {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-
+public class AccountRequest {
     private String username;
 
     private String password;
 
     private String salt;
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
+    private String companyName;
 
     public String getUsername() {
         return username;
@@ -46,5 +35,13 @@ public class Account {
 
     public void setSalt(String salt) {
         this.salt = salt;
+    }
+
+    public String getCompanyName() {
+        return companyName;
+    }
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }
