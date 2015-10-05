@@ -18,7 +18,7 @@ public class CompanyController {
     @Autowired
     CompanyService companyService;
 
-    @RequestMapping(value = "/companies", method = RequestMethod.PUT)
+    @RequestMapping(value = "/companies", method = RequestMethod.PUT, consumes = "application/json;charset=UTF-8")
     public void createCompany(@RequestBody CompanyDAO companyDAO){
         companyService.createCompany(companyDAO);
     }
