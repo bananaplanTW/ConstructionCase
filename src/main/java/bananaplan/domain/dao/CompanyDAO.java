@@ -80,8 +80,11 @@ public class CompanyDAO {
     @Override
     public String toString() {
         return "CompanyDAO{" +
-                "name='" + name + '\'' +
-                ", id=" + id +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", account='" + account + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
                 '}';
     }
 }

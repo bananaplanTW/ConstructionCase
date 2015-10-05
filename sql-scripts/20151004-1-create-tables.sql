@@ -36,3 +36,30 @@ VALUES
 	(6,'CD',NULL),
 	(7,'D','北面'),
 	(8,'AD',NULL);
+
+CREATE TABLE `categories` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `categories` (`id`, `name`)
+VALUES
+	(1,'濕式貼著飾面材'),
+	(2,'石材類'),
+	(3,'帷幕牆系統'),
+	(4,'外牆附掛物');
+
+CREATE TABLE `methods` (
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `methods` (`id`, `name`)
+VALUES
+	(1,'紅外線顯像儀'),
+	(2,'近距離目視(潑水,刀插)'),
+	(3,'打診'),
+	(4,'金屬探測器或內視鏡'),
+	(5,'手動油壓式拉拔試驗');
