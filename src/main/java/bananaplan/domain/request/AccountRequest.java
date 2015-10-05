@@ -13,6 +13,8 @@ public class AccountRequest {
 
     private String companyName;
 
+    private String employeeName;
+
     public String getUsername() {
         return username;
     }
@@ -43,5 +45,13 @@ public class AccountRequest {
 
     public void setCompanyName(String companyName) {
         this.companyName = companyName;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 }

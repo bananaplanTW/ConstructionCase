@@ -34,7 +34,7 @@ public class AccountService {
         }
         EncryptedPassword encryptedPassword = passwordService.encryptedPassword(accountRequest.getPassword());
         AccountDAO accountDAO = new AccountDAO(accountRequest.getUsername(), encryptedPassword.getEncryptedPassword(),
-                encryptedPassword.getSalt(), companyDAO);
+                encryptedPassword.getSalt(), accountRequest.getEmployeeName(), companyDAO);
         accountRepository.save(accountDAO);
     }
 

@@ -15,6 +15,8 @@ public class AccountDAO {
 
     private String salt;
 
+    private String employeeName;
+
     @ManyToOne
     @JoinColumn(name="company_id")
     private CompanyDAO companyDAO;
@@ -22,10 +24,11 @@ public class AccountDAO {
     public AccountDAO() {
     }
 
-    public AccountDAO(String username, String password, String salt, CompanyDAO companyDAO) {
+    public AccountDAO(String username, String password, String salt, String employeeName, CompanyDAO companyDAO) {
         this.username = username;
         this.password = password;
         this.salt = salt;
+        this.employeeName = employeeName;
         this.companyDAO = companyDAO;
     }
 
@@ -67,6 +70,14 @@ public class AccountDAO {
 
     public void setCompanyDAO(CompanyDAO companyDAO) {
         this.companyDAO = companyDAO;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
     @Override
