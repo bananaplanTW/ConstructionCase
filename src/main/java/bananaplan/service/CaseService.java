@@ -4,6 +4,7 @@ import bananaplan.domain.dao.CaseDAO;
 import bananaplan.domain.dao.CompanyDAO;
 import bananaplan.domain.request.CaseRequest;
 import bananaplan.repository.CaseRepository;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,29 @@ public class CaseService {
         caseDAO.setElevationFile(caseRequest.getElevationFile());
         caseDAO.setSafetyFile(caseRequest.getSafetyFile());
         caseDAO.setCompanyDAO(companyDAO);
+
+        caseRepository.save(caseDAO);
+    }
+
+    public void updateCase(Long caseId, CaseRequest caseRequest){
+        CaseDAO caseDAO = caseRepository.findById(caseId);
+
+        if(StringUtils.isNotBlank(caseRequest.getName())){
+            caseDAO.setName(caseRequest.getName());
+        }
+        if(StringUtils.isNotBlank(caseRequest.getPlanFile())){
+            caseDAO.setPlanFile(caseRequest.getPlanFile());
+        }
+        if(StringUtils.isNotBlank(caseRequest.getElevationFile())){
+            caseDAO.setElevationFile(caseRequest.getElevationFile());
+        }
+        if(StringUtils.isNotBlank(caseRequest.getSafetyFile())){
+            caseDAO.setSafetyFile(caseRequest.getSafetyFile());
+        }
+        if(StringUtils.isNotBlank(caseRequest.getCompanyName())){
+            CompanyDAO companyDAO = companyService.getCompany(caseRequest.getCompanyName());
+            caseDAO.setCompanyDAO(companyDAO);
+        }
 
         caseRepository.save(caseDAO);
     }

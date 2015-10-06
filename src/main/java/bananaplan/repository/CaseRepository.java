@@ -8,4 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * All rights are reserved by BananaPlanTw
  */
 public interface CaseRepository extends JpaRepository<CaseDAO, Long> {
+    CaseDAO findById(Long id);
 }
