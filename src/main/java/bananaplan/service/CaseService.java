@@ -55,4 +55,9 @@ public class CaseService {
 
         caseRepository.save(caseDAO);
     }
+
+    public void deleteCase(Long caseId){
+        CaseDAO caseDAO = caseRepository.findById(caseId);
+        caseRepository.delete(caseDAO);
+    }
 }
